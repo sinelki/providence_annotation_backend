@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  sql-db:
+    image: mysql:8
+    volumes:
+    - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: providence_comparison_class
+      MYSQL_USER: serviceapp
+      MYSQL_PASSWORD: "serviceapp##hilaIEoick98alk$kjiI"
+
+  nosql-db:
+    image: mongo:4
+    volumes:
+    - ????
+    restart: always
+    environment:
+      x????:????
+
+  crowdsourcing:
+    depends_on:
+    - sql-db
+    - nosql-db
+    build:
+      context: 
+    image: sinelki/croudsourcing:providence
+    environment:
+      # TODO: Remove the startup configurations and use this
+      #CHILDES_SQL_DB_CONNECTION_STRING: "server=localhost;port=3306;user id=root; password=password; database=providence_comparison_class; SslMode=none"
